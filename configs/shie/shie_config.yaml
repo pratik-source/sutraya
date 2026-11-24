@@ -1,0 +1,94 @@
+# ==========================================
+# SUTRAYA - SHIE CONFIGURATION
+# ==========================================
+
+project:
+  name: SUTRAYA
+  module: SHIE
+  description: Handwriting Intelligence Engine
+
+# ------------------------------------------
+# Dataset Configuration
+# ------------------------------------------
+
+dataset:
+  name: IAM
+  root: datasets/iam
+  train_csv: datasets/iam/annotations/train.csv
+  validation_csv: datasets/iam/annotations/validation.csv
+  test_csv: datasets/iam/annotations/test.csv
+
+  image_height: 32
+  image_channels: 1
+  horizontal_stride: 2
+
+  vocabulary_path: configs/shie_vocabulary.json
+
+# ------------------------------------------
+# Model Configuration
+# ------------------------------------------
+
+model:
+  architecture: CNN_BiLSTM_CTC
+
+  num_classes: 80
+
+  cnn:
+    channels: [32, 64, 128, 256]
+
+  lstm:
+    hidden_size: 256
+    num_layers: 2
+    bidirectional: true
+
+  classifier:
+    output_size: 80
+
+# ------------------------------------------
+# Training Configuration
+# ------------------------------------------
+
+training:
+  batch_size: 8
+  epochs: 15
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: AdamW
+  loss_function: CTCLoss
+  blank_index: 0
+  gradient_clipping: 5.0
+  seed: 42
+
+  scheduler:
+    name: ReduceLROnPlateau
+    factor: 0.5
+    patience: 3
+    min_lr: 0.000001
+    threshold: 0.0001
+
+# ------------------------------------------
+# Hardware Configuration
+# ------------------------------------------
+
+hardware:
+  device: auto
+  num_workers: 0
+  pin_memory: true
+
+# ------------------------------------------
+# Checkpoint Configuration
+# ------------------------------------------
+
+checkpoint:
+  directory: checkpoints/shie
+  save_best_only: true
+  monitor: validation_cer
+
+# ------------------------------------------
+# Logging Configuration
+# ------------------------------------------
+
+logging:
+  directory: logs/shie
+  save_training_metrics: true
+  save_validation_metrics: true

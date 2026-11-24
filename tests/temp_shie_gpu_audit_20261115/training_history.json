@@ -1,0 +1,43 @@
+{
+    "project": "SUTRAYA",
+    "module": "SHIE",
+    "epochs": [
+        {
+            "epoch": 1,
+            "training": {
+                "loss": 5.331489908695221,
+                "gradient_norm": 8.873691630363464,
+                "samples": 160,
+                "batches": 20
+            },
+            "validation": {
+                "loss": 3.2876089334487917,
+                "cer": 1.0,
+                "wer": 1.0,
+                "cer_statistics": {
+                    "samples": 80,
+                    "reference_units": 2816,
+                    "substitutions": 0,
+                    "deletions": 2816,
+                    "insertions": 0,
+                    "total_errors": 2816,
+                    "empty_reference_samples": 0,
+                    "error_rate": 1.0
+                },
+                "wer_statistics": {
+                    "samples": 80,
+                    "reference_units": 583,
+                    "substitutions": 0,
+                    "deletions": 583,
+                    "insertions": 0,
+                    "total_errors": 583,
+                    "empty_reference_samples": 0,
+                    "error_rate": 1.0
+                },
+                "samples": 80,
+                "batches": 10
+            },
+            "learning_rate": 0.001
+        }
+    ]
+}
